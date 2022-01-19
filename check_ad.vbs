@@ -1,7 +1,7 @@
 'Script to check the status of a DOMAIN controller and report to Nagios
 'requires DCDIAG.EXE 
 'Author: Felipe Ferreira
-'Version: 3.3
+'Version: 3.3-20220119
 
 '
 'Mauled over by John Jore, j-o-h-n-a-t-j-o-r-e-d-o-t-n-o 16/11/2010 to work on W2K8, x32
@@ -34,6 +34,8 @@
 '	Added Spanish support (not tested) 
 'Version 3.3-20160630 by Alexandre Rigaud
 '   Fix issue on french characters 
+'Version 3.3-20220119 by Nikola Uvalic
+'   Fix issue on false positive for FSMOCHECK for long domain names (tested on server 2019)
 
 'Force all variables to be declared before usage
 option explicit
@@ -54,8 +56,8 @@ const intCritical = 2
 const intUnknown = 3
 
 'Lang dependend. Default is english
-dim strOK : strOK = "passed"
-dim strNotOK : strNotOk = "failed"
+dim strOK : strOK = "passed "
+dim strNotOK : strNotOk = "failed "
 
 'Check if dcidag command exists on system32 folder
 dim filesys,path_dcdiag
